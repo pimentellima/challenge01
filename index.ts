@@ -1,5 +1,4 @@
 import * as fs from "fs";
-import * as crypto from "node:crypto";
 
 interface Product {
   id: number;
