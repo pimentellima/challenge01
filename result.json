@@ -29,11 +29,15 @@
   },
   {
     "category": "Leite Integral Parmalat 1L",
-    "count": 1,
+    "count": 2,
     "products": [
       {
         "title": "Leite Integral Parmalat 1L",
         "supermarket": "Supermercado D"
+      },
+      {
+        "title": "Leite Parmalat Integral 1000ml",
+        "supermarket": "Supermercado C"
       }
     ]
   },
@@ -103,7 +107,7 @@
   },
   {
     "category": "Feijão Carioca Camil 1kg",
-    "count": 3,
+    "count": 4,
     "products": [
       {
         "title": "Feijão Carioca Camil 1kg",
@@ -116,6 +120,10 @@
       {
         "title": "Feijão Carioca Camil 1kg",
         "supermarket": "Supermercado C"
+      },
+      {
+        "title": "Feijão Camil Carioca 1000g",
+        "supermarket": "Supermercado B"
       }
     ]
   },
@@ -277,11 +285,15 @@
   },
   {
     "category": "Carne Moída Seara 1kg",
-    "count": 1,
+    "count": 2,
     "products": [
       {
         "title": "Carne Moída Seara 1kg",
         "supermarket": "Supermercado B"
+      },
+      {
+        "title": "Carne Moída Seara 1000g",
+        "supermarket": "Supermercado A"
       }
     ]
   },
@@ -337,11 +349,15 @@
   },
   {
     "category": "Picanha Bovina Friboi 1kg",
-    "count": 1,
+    "count": 2,
     "products": [
       {
         "title": "Picanha Bovina Friboi 1kg",
         "supermarket": "Supermercado A"
+      },
+      {
+        "title": "Picanha Friboi Bovina 1000g",
+        "supermarket": "Supermercado C"
       }
     ]
   },
@@ -500,32 +516,12 @@
     ]
   },
   {
-    "category": "Leite Parmalat Integral 1000ml",
-    "count": 1,
-    "products": [
-      {
-        "title": "Leite Parmalat Integral 1000ml",
-        "supermarket": "Supermercado C"
-      }
-    ]
-  },
-  {
     "category": "Leite Desnatado Piracanjuba Zero 1L",
     "count": 1,
     "products": [
       {
         "title": "Leite Desnatado Piracanjuba Zero 1L",
         "supermarket": "Supermercado D"
-      }
-    ]
-  },
-  {
-    "category": "Feijão Camil Carioca 1000g",
-    "count": 1,
-    "products": [
-      {
-        "title": "Feijão Camil Carioca 1000g",
-        "supermarket": "Supermercado B"
       }
     ]
   },
@@ -560,16 +556,6 @@
     ]
   },
   {
-    "category": "Carne Moída Seara 1000g",
-    "count": 1,
-    "products": [
-      {
-        "title": "Carne Moída Seara 1000g",
-        "supermarket": "Supermercado A"
-      }
-    ]
-  },
-  {
     "category": "Filé de Frango Seara Congelado 1kg",
     "count": 1,
     "products": [
@@ -590,16 +576,6 @@
     ]
   },
   {
-    "category": "Picanha Friboi Bovina 1000g",
-    "count": 1,
-    "products": [
-      {
-        "title": "Picanha Friboi Bovina 1000g",
-        "supermarket": "Supermercado C"
-      }
-    ]
-  },
-  {
     "category": "Macarrão Renata Espaguete 500 Gramas",
     "count": 1,
     "products": [
@@ -611,18 +587,12 @@
   },
   {
     "category": "Leite Integral Ninho 1L",
-    "count": 1,
+    "count": 2,
     "products": [
       {
         "title": "Leite Integral Ninho 1L",
         "supermarket": "Supermercado A"
-      }
-    ]
-  },
-  {
-    "category": "Leite Ninho Integral 1000ml",
-    "count": 1,
-    "products": [
+      },
       {
         "title": "Leite Ninho Integral 1000ml",
         "supermarket": "Supermercado B"

@@ -23,18 +23,58 @@ function hashProductString(productString: string) {
   normalized = normalized.replace(/litros?/gi, "l");
   normalized = normalized.replace(/quilos?/gi, "kg");
 
-  // Extrai quantidade
-  const quantityRegex = /(\d+)\s*(?:kg|g|l|ml)/i;
+  // Extai informação de quantidade
+  const quantityRegex =
+    /(\d+[\.,]?\d*)\s*(kg|g|kilo|quilo|quilos|kilos|l|lt|litro|litros|ml|mililitro|mililitros)/i;
   const quantityMatch = normalized.match(quantityRegex);
-  let quantity = quantityMatch ? quantityMatch[0].replace(/\s+/g, "") : "";
 
-  // Extrai termos chave
+  let standardizedQuantity = "";
+  let originalQuantityText = "";
+
+  if (quantityMatch) {
+    originalQuantityText = quantityMatch[0];
+    const value = parseFloat(quantityMatch[1].replace(",", "."));
+    const unit = quantityMatch[2].toLowerCase();
+
+    // Padroniza para unidades base kg e l com separação decimal por vírgula
+    if (["g", "grama", "gramas"].includes(unit)) {
+      // Converte g para kg
+      const kgValue = value / 1000;
+      standardizedQuantity = `${kgValue
+        .toFixed(1)
+        .replace(".", ",")
+        .replace(",0", "")} kg`;
+    } else if (["kg", "kilo", "kilos", "quilo", "quilos"].includes(unit)) {
+      // Adiciona vírgula para separação decimal
+      standardizedQuantity = `${value
+        .toFixed(1)
+        .replace(".", ",")
+        .replace(",0", "")} kg`;
+    } else if (["ml", "mililitro", "mililitros"].includes(unit)) {
+      // Converte ml para l
+      const lValue = value / 1000;
+      standardizedQuantity = `${lValue
+        .toFixed(1)
+        .replace(".", ",")
+        .replace(",0", "")} l`;
+    } else if (["l", "lt", "litro", "litros"].includes(unit)) {
+      // Adiciona vírgula para separação decimal
+      standardizedQuantity = `${value
+        .toFixed(1)
+        .replace(".", ",")
+        .replace(",0", "")} l`;
+    } else {
+      standardizedQuantity = quantityMatch[0];
+    }
+  }
+
+  // Extrai termos chave do produto
   let terms = normalized
     .replace(/[^\w\s]/g, "") // Remove pontuação
     .split(" ")
     .filter(
       (term) =>
-        // Filtra conectivos e artigos
+        // Filtra artigos
         ![
           "de",
           "da",
@@ -49,23 +89,29 @@ function hashProductString(productString: string) {
           "para",
         ].includes(term)
     )
-    .filter(Boolean); // Remove strings vazias
+    .filter(Boolean); // Remove strings cazias
 
-  // Remove termos relacionados à quantidade
-  terms = terms
-    .filter((term) => !term.match(/^\d+$/)) // Remove números 
-    .filter((term) => {
-      if (!quantityMatch) return true;
-      const qTerms = quantityMatch[0].toLowerCase().split(/\s+/);
-      return !qTerms.includes(term);
-    });
-
+  // Remove a quantidade para adicionar no final padronizadas
+  terms = terms.filter((term) => {
+    // Filtra o termo de quantidade
+    if (
+      originalQuantityText &&
+      originalQuantityText.toLowerCase().includes(term)
+    ) {
+      return false;
+    }
+    // Filtra números soltos
+    if (term.match(/^\d+$/)) {
+      return false;
+    }
+    return true;
+  });
   // Ordena os termos para garantir consistência na hash
   terms.sort();
 
-  // Adiciona novamente a quantidade
-  if (quantity) {
-    terms.push(quantity);
+  // Adiciona a quantidade padronizada no final
+  if (standardizedQuantity) {
+    terms.push(standardizedQuantity.replace(/\s+/g, ""));
   }
 
   // Junta os termos de volta com espaços
